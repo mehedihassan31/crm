@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,11 @@ Route::middleware('auth', 'verified')->group(function () {
 
     Route::get('products/data', [ProductController::class,'data'])->name('product.data');
     Route::resource('products', ProductController::class);
+
+    Route::get('customers/data', [CustomerController::class,'data'])->name('customer.data');
+    Route::resource('customers', CustomerController::class);
+
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

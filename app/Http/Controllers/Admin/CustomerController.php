@@ -2,24 +2,56 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\API\CustomersCheck;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
+use App\Models\API\CustomersCheck;
+use App\Http\Controllers\Controller;
 
 class CustomerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $dataTable;
+
+    public function __construct(Datatables $dataTable)
+    {
+        $this->dataTable = $dataTable;
+    }
     public function index()
     {
-        $customersInfo=CustomersCheck::paginate(10);
-        return view('admin.customers.index',compact('customersInfo'));
+        return view('admin.customer.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function data(Request $request)
+    {
+
+        $query = Customer::orderBY('id', 'DESC')->select();
+        return $this->dataTable->eloquent($query)
+            ->escapeColumns([])
+
+            // ->editColumn('status', function ($item) {
+            //     $html = "";
+            //     $html .= '<td>';
+            //     if ($item->status == 0) {
+            //         $html .= '<span class="badge bg-warning me-1"></span> Unsold';
+            //     }
+            //     if ($item->status == 1) {
+            //         $html .= '<span class="badge bg-danger me-1"></span> Sold';
+            //     }
+
+            //     $html .= '</td>';
+            //     return $html;
+            // })
+
+            ->addColumn('action', function ($item) {
+
+                $html = "";
+                $html .= '<td><a href="' . route('customers.show', $item->id) . '" class="btn btn-primary d-none d-sm-inline-block">Details</a></td>';
+                return $html;
+            })
+
+            ->make(true);
+    }
+
     public function create()
     {
         //
@@ -30,7 +62,31 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'name' => 'required|string',
+            'email' =>'email:rfc,dns|unique:customers,email',
+            'phone' => 'required|numeric',
+            'alt_phone' => 'nullable|numeric',
+            'address' => 'nullable|string',
+            'dob' => 'nullable',
+            'image' => 'nullable|string',
+
+        ]);
+
+        // return $request->all();
+
+
+        try {
+            $customer = new Customer();
+            $customer->fill($request->except(['_token']));
+            $customer->save();
+
+            return redirect()->route('customers.index')->with('message', 'Successfully Created');
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**
@@ -38,8 +94,8 @@ class CustomerController extends Controller
      */
     public function show(string $id)
     {
-        $customersInfo=CustomersCheck::find($id);
-        return view('admin.customers.show',compact('$data'));
+        $customer= Customer::find($id);
+        return view('admin.customer.show', compact('customer'));
     }
 
     /**
@@ -67,11 +123,11 @@ class CustomerController extends Controller
     }
 
     public function updateStatus($id, Request $request)
-{
-    $customer = CustomersCheck::findOrFail($id);
-    $customer->is_active = $request->input('is_active');
-    $customer->save();
+    {
+        $customer = CustomersCheck::findOrFail($id);
+        $customer->is_active = $request->input('is_active');
+        $customer->save();
 
-    return response()->json(['message' => 'Status updated !']);
-}
+        return response()->json(['message' => 'Status updated !']);
+    }
 }

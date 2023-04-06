@@ -20,6 +20,5 @@ class Product extends Model
         'security_qsn_ans' ,
         'add_info',
         'user_id'
-
     ];
 }

@@ -6,7 +6,7 @@
 
 
         <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
-            data-bs-target="#modal-add-product">
+            data-bs-target="#modal-add-customer">
             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                 stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -16,7 +16,7 @@
             </svg>
             Add a Product
         </a>
-        @include('admin.products.modals.add')
+        @include('admin.customer.modals.add')
 
 
     </div>
@@ -37,11 +37,9 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Payoneer Password</th>
-                            <th>Email Password</th>
-                            <th>Recovery Email</th>
                             <th>Phone</th>
-                            <th>Status</th>
+                            <th>Alt Phone</th>
+                            <th>Address</th>
                             <th>Action</th>
 
                         </tr>
@@ -90,28 +88,20 @@
                                 data: 'email',
                                 name: 'email'
                             },
-                            {
-                                data: 'payoneer_password',
-                                name: 'payoneer_password'
-                            },
-                            {
-                                data: 'email_password',
-                                name: 'email_password'
-                            },
-                            {
-                                data: 'recovery_email',
-                                name: 'recovery_email'
-                            },
+
                             {
                                 data: 'phone',
                                 name: 'phone'
                             },
 
                             {
-                                data: 'status',
-                                name: 'status'
+                                data: 'alt_phone',
+                                name: 'alt_phone'
                             },
-
+                            {
+                                data: 'address',
+                                name: 'address'
+                            },
 
                             {
                                 data: 'action',
@@ -120,7 +110,7 @@
 
                         ],
                         ajax: {
-                            url: '{{ route('product.data') }}',
+                            url: '{{ route('customer.data') }}',
                             data: function(d) {
 
                                 $(".form-filter").serializeArray().map(function(x) {

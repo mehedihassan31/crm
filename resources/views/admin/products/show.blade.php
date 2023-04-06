@@ -8,33 +8,32 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label">Name</label>
-                        <input type="text" class="form-control" value="{{$product->name}}" >
+                        <input type="text" class="form-control" value="{{$product->name}}" readonly>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Email</label>
-                        <input type="email" class="form-control" value="{{$product->email}}" >
+                        <input type="email" class="form-control" value="{{$product->email}}" readonly>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Payoneer Password</label>
-                        <input type="text" class="form-control" value="{{$product->payoneer_password}}"
-                           >
+                        <input type="text" class="form-control" value="{{$product->payoneer_password}}" readonly>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Email Password</label>
-                        <input type="text" class="form-control" value="{{$product->email_password}}" >
+                        <input type="text" class="form-control" value="{{$product->email_password}}" readonly>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Recovery Email</label>
-                        <input type="email" class="form-control" value="{{$product->recovery_email}}" >
+                        <input type="email" class="form-control" value="{{$product->recovery_email}}" readonly>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Phone</label>
-                        <input type="number" class="form-control" value="{{$product->phone}}" >
+                        <input type="number" class="form-control" value="{{$product->phone}}" readonly>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Security Questions Ans</label>
-                        <input type="text" class="form-control" value="{{$product->security_qsn_ans}}">
+                        <input type="text" class="form-control" value="{{$product->security_qsn_ans}}" readonly>
                     </div>
 
                 </div>
@@ -43,7 +42,7 @@
                         <div class="col-lg-12">
                             <div>
                                 <label class="form-label">Additional information</label>
-                                <textarea class="form-control" rows="3">{{$product->add_info}}</textarea>
+                                <textarea class="form-control" rows="3" disabled>{{$product->add_info}}</textarea>
                             </div>
                         </div>
                 </div>
