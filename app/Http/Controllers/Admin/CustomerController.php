@@ -45,7 +45,8 @@ class CustomerController extends Controller
             ->addColumn('action', function ($item) {
 
                 $html = "";
-                $html .= '<td><a href="' . route('customers.show', $item->id) . '" class="btn btn-primary d-none d-sm-inline-block">Details</a></td>';
+                $html .= '<td><a href="' . route('customers.edit', $item->id) . '" class="btn btn-primary d-none d-sm-inline-block">Edit</a></td> ';
+                $html .= ' <td><a href="' . route('customers.show', $item->id) . '" class="btn btn-primary d-none d-sm-inline-block">Details</a></td>';
                 return $html;
             })
 
@@ -103,7 +104,8 @@ class CustomerController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $customer= Customer::find($id);
+        return view('admin.customer.edit', compact('customer'));
     }
 
     /**
@@ -111,7 +113,30 @@ class CustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'email' =>'email:rfc,dns',
+            'phone' => 'required|numeric',
+            'alt_phone' => 'nullable|numeric',
+            'address' => 'nullable|string',
+            'dob' => 'nullable',
+            'image' => 'nullable|string',
+
+        ]);
+
+        // return $request->all();
+
+
+        try {
+            $customer=Customer::find($id);
+            $customer->fill($request->except(['_token']));
+            $customer->save();
+
+            return redirect()->route('customers.index')->with('message', 'Successfully Created');
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**

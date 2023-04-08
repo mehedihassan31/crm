@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\SaleController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CustomerController;
 
@@ -21,6 +22,7 @@ Route::get('/', function () {
 });
 
 
+Route::get('sales/email', [SaleController::class,'email']);
 
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/dashboard', function () {
@@ -33,6 +35,9 @@ Route::middleware('auth', 'verified')->group(function () {
 
     Route::get('customers/data', [CustomerController::class,'data'])->name('customer.data');
     Route::resource('customers', CustomerController::class);
+
+    Route::get('sales-invoice/data',[SaleController::class,'data'])->name('sales-invoice.data');
+    Route::resource('sales-invoice', SaleController::class);
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

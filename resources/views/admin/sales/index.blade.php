@@ -5,8 +5,7 @@
     <div class="btn-list">
 
 
-        <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
-            data-bs-target="#modal-add-customer">
+        <a href="{{route('sales-invoice.create')}}" class="btn btn-primary d-none d-sm-inline-block" >
             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                 stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -14,9 +13,9 @@
                 <path d="M12 5l0 14" />
                 <path d="M5 12l14 0" />
             </svg>
-            Add a Customer
+            Create a Invoice
         </a>
-        @include('admin.customer.modals.add')
+
 
 
     </div>
@@ -26,20 +25,18 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Customers</h3>
+                <h3 class="card-title">Sales</h3>
             </div>
 
             <div class="table-responsive mt-3">
-                <table id="dataTablePro" class="table card-circle card-table table-vcenter text-nowrap datatable  table-hover   dt-responsive" cellspacing="0" width="100%" >
+                <table id="dataTableSales" class="table card-circle card-table table-vcenter text-nowrap datatable  table-hover   dt-responsive" cellspacing="0" width="100%" >
 
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Alt Phone</th>
-                            <th>Address</th>
+                            <th>Totall Price</th>
+                            <th>Payment Date</th>
                             <th>Action</th>
 
                         </tr>
@@ -57,8 +54,8 @@
 
                 getProductData();
                 function getProductData() {
-                    $('#dataTablePro').DataTable().destroy();
-                    var table = $('#dataTablePro').DataTable({
+                    $('#dataTableSales').DataTable().destroy();
+                    var table = $('#dataTableSales').DataTable({
                         processing: true,
                         serverSide: true,
                         lengthChange: false,
@@ -85,22 +82,12 @@
                                 name: 'name'
                             },
                             {
-                                data: 'email',
-                                name: 'email'
-                            },
-
-                            {
-                                data: 'phone',
-                                name: 'phone'
-                            },
-
-                            {
-                                data: 'alt_phone',
-                                name: 'alt_phone'
+                                data: 'totall_price',
+                                name: 'totall_price'
                             },
                             {
-                                data: 'address',
-                                name: 'address'
+                                data: 'payment_date',
+                                name: 'payment_date'
                             },
 
                             {
@@ -110,7 +97,7 @@
 
                         ],
                         ajax: {
-                            url: '{{ route('customer.data') }}',
+                            url: '{{ route('sales-invoice.data') }}',
                             data: function(d) {
 
                                 $(".form-filter").serializeArray().map(function(x) {

@@ -56,7 +56,8 @@ class ProductController extends Controller
             ->addColumn('action', function ($item) {
 
                 $html = "";
-                $html .= '<td><a href="' . route('products.show', $item->id) . '" class="btn btn-primary d-none d-sm-inline-block">Details</a></td>';
+                $html .= '<td><a href="' . route('products.edit', $item->id) . '" class="btn btn-primary d-none d-sm-inline-block">Edit</a></td> ';
+                $html .= ' <td><a href="' . route('products.show', $item->id) . '" class="btn btn-primary d-none d-sm-inline-block">Details</a></td>';
                 return $html;
             })
 
@@ -74,7 +75,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'name' => 'required|string',
             'email' =>'email:rfc,dns|unique:products,email',
@@ -118,7 +118,8 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product=Product::find($id);
+        return view('admin.products.edit',compact('product'));
     }
 
     /**
@@ -126,7 +127,33 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $request->validate([
+            'name' => 'required|string',
+            'email' =>'email:rfc,dns',
+            'payoneer_password' => 'required|string',
+            'email_password' => 'required|string',
+            'recovery_email' =>'email:rfc,dns',
+            'f_image_link' => 'required|string',
+            's_image_link' => 'required|string',
+            'phone' => 'nullable|numeric',
+            'security_qsn_ans' => 'nullable|string',
+            'add_info' => 'nullable|string',
+        ]);
+
+        try {
+            $product = Product::find($id);
+            $product->fill($request->except(['_token']));
+            $product->user_id=Auth::user()->id;
+            $product->save();
+
+
+            return redirect()->route('products.index')->with('message', 'Successfully Created');
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
     }
 
     /**

@@ -4,7 +4,7 @@
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Product</h5>
+                    <h5 class="modal-title">Customer</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -32,7 +32,7 @@
 
                     <div class="mb-3">
                         <label class="form-label">Date of Birth</label>
-                        <input type="datetime-local" class="form-control" name="dob" >
+                        <input type="date" class="form-control" name="dob" >
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Image url</label>
