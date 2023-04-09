@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Yajra\Datatables\Datatables;
-use App\Mail\sendOrderEmail;
+use App\Models\Product;
+use App\Models\Customer;
 use App\Models\SaleInvoice;
+use Illuminate\Support\Str;
+use App\Mail\sendOrderEmail;
+use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
+use App\Http\Controllers\Controller;
+use App\Models\SaleInvoiceProduct;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class SaleController extends Controller
@@ -21,7 +26,6 @@ class SaleController extends Controller
     public function index()
     {
 
-        // return $query = SaleInvoice::with('Customer')->orderBY('id', 'DESC')->get();
         return view('admin.sales.index');
     }
 
@@ -65,7 +69,8 @@ class SaleController extends Controller
 
                     $html = "";
                     $html .= '<td><a href="' . route('sales-invoice.edit', $item->id) . '" class="btn btn-primary d-none d-sm-inline-block">Edit</a></td> ';
-                    $html .= ' <td><a href="' . route('sales-invoice.show', $item->id) . '" class="btn btn-primary d-none d-sm-inline-block">View</a></td>';
+                    $html .= ' <td><a href="' . route('sales-invoice.show', $item->id) . '" class="btn btn-primary d-none d-sm-inline-block">View</a></td> ';
+                    $html .= ' <td><a href="' . route('sales-invoice.edit', $item->id) . '" class="btn btn-primary d-none d-sm-inline-block">Send Mail</a></td> ';
                     return $html;
                 })
 
@@ -77,7 +82,9 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        $customers=Customer::all();
+        $products=Product::where('status','0')->get();
+        return view('admin.sales.create',compact('customers','products'));
     }
 
     /**
@@ -85,7 +92,32 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request->all();
+
+        try {
+            $saleInvoice = new  SaleInvoice();
+            $saleInvoice->customer_id=$request->customer_id;
+            $saleInvoice->invoice_no=Str::random(8);
+            $saleInvoice->unit_price=$request->unit_price;
+            $saleInvoice->totall_price=$request->total_price;
+            $saleInvoice->payment_date=$request->payment_date;
+            $saleInvoice->create_by=Auth::user()->id;
+            $saleInvoice->save();
+
+            foreach($request->product_id as $id){
+                SaleInvoiceProduct::create([
+                    'sale_invoice_id'=>$saleInvoice->id,
+                    'product_id'=>$id,
+                    'unit_price'=>$request->unit_price,
+                ]);
+            }
+
+            return redirect()->route('sales-invoice.index')->with('message', 'Successfully Created');
+
+        } catch (\Throwable $th) {
+            throw $th;
+            return redirect()->route('sales-invoice.index')->with('message', 'Error');
+        }
     }
 
     /**
@@ -94,6 +126,7 @@ class SaleController extends Controller
     public function show(string $id)
     {
         $saleInvoice = SaleInvoice::with('Customer','sales_product')->find($id);
+
         return view('admin.sales.invoice',compact('saleInvoice'));
     }
 

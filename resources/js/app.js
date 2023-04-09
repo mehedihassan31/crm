@@ -11,6 +11,7 @@ import '../../node_modules/@tabler/core/dist/libs/litepicker/dist/litepicker.js'
 import '../../node_modules/@tabler/core/dist/libs/tom-select/dist/js/tom-select.complete.min.js';
 import '../../node_modules/@tabler/core/dist/libs/nouislider/dist/nouislider.min.js';
 
+
 import './custom.js'
 
 // import '../../node_modules/jquery/dist/jquery.min.js';

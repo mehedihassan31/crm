@@ -16,6 +16,7 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
-        "@tabler/core": "^1.0.0-beta17"
+        "@tabler/core": "^1.0.0-beta17",
+        "select2": "^4.1.0-rc.0"
     }
 }

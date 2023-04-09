@@ -19,9 +19,11 @@ return new class extends Migration
             $table->string('invoice_no')->nullable();
             $table->integer('unit_price')->nullable();
             $table->integer('discount_price')->nullable();
-            $table->integer('totall_price')->nullable();
+            $table->integer('totall_price')->default(0);
+            $table->integer('due_amount')->default(0);
             $table->integer('vat')->nullable();
             $table->mediumText('remark')->nullable();
+            $table->integer('create_by')->nullable();
             $table->dateTime('payment_date')->nullable();
             $table->timestamps();
         });

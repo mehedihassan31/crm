@@ -127,31 +127,27 @@
                                     </tr>
                                 @endforeach
 
-
-
-
-
-
-
-
-
-
                                 <tr>
                                     <td colspan="4" class="strong text-end">Subtotal</td>
-                                    <td class="text-end">$25.000,00</td>
+                                    <td class="text-end">{{$saleInvoice->totall_price}}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="4" class="strong text-end">Vat Rate</td>
-                                    <td class="text-end">20%</td>
+                                    <td class="text-end">{{$saleInvoice->totall_price}}</td>
                                 </tr>
-                                <tr>
-                                    <td colspan="4" class="strong text-end">Vat Due</td>
-                                    <td class="text-end">$5.000,00</td>
-                                </tr>
+
                                 <tr>
                                     <td colspan="4" class="font-weight-bold text-uppercase text-end">Total Due</td>
-                                    <td class="font-weight-bold text-end">$30.000,00</td>
+                                    <td class="font-weight-bold text-end">{{$saleInvoice->due_amount}}</td>
                                 </tr>
+                                <tr>
+
+                                    <td colspan="4" class="font-weight-bold text-uppercase text-end">Total Paid</td>
+                                    <td class="font-weight-bold text-end">{{$saleInvoice->totall_price}}</td>
+
+                                </tr>
+
+
                             </table>
                             <p class="text-muted text-center mt-5">Thank you very much for doing business with us. We
                                 look forward to working with
