@@ -42,6 +42,7 @@
                             <th>Recovery Email</th>
                             <th>Phone</th>
                             <th>Status</th>
+                            <th>Created By</th>
                             <th>Action</th>
 
                         </tr>
@@ -110,6 +111,11 @@
                             {
                                 data: 'status',
                                 name: 'status'
+                            },
+
+                            {
+                                data: 'create_by',
+                                name: 'create_by'
                             },
 
 

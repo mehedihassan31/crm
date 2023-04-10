@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Models\API\CustomersCheck;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
@@ -24,23 +25,15 @@ class CustomerController extends Controller
     public function data(Request $request)
     {
 
-        $query = Customer::orderBY('id', 'DESC')->select();
+        $query = Customer::with('user')->orderBY('id', 'DESC')->select();
         return $this->dataTable->eloquent($query)
             ->escapeColumns([])
 
-            // ->editColumn('status', function ($item) {
-            //     $html = "";
-            //     $html .= '<td>';
-            //     if ($item->status == 0) {
-            //         $html .= '<span class="badge bg-warning me-1"></span> Unsold';
-            //     }
-            //     if ($item->status == 1) {
-            //         $html .= '<span class="badge bg-danger me-1"></span> Sold';
-            //     }
+            ->addColumn('create_by', function (Customer $item) {
+                return $item?->user?->name;
 
-            //     $html .= '</td>';
-            //     return $html;
-            // })
+            })
+            ->rawColumns(['create_by'])
 
             ->addColumn('action', function ($item) {
 
@@ -81,6 +74,7 @@ class CustomerController extends Controller
         try {
             $customer = new Customer();
             $customer->fill($request->except(['_token']));
+            $customer->create_by = Auth::user()->id;
             $customer->save();
 
             return redirect()->route('customers.index')->with('message', 'Successfully Created');

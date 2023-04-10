@@ -36,6 +36,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('customers/data', [CustomerController::class,'data'])->name('customer.data');
     Route::resource('customers', CustomerController::class);
 
+    Route::get('sales-invoice/send-email/{id}',[SaleController::class,'sendEmail'])->name('sales-invoice.email');
     Route::get('sales-invoice/data',[SaleController::class,'data'])->name('sales-invoice.data');
     Route::resource('sales-invoice', SaleController::class);
 

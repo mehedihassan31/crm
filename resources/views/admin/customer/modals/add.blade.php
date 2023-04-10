@@ -10,33 +10,55 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label">Name</label>
-                        <input type="text" class="form-control" name="name" >
+                        <input type="text" class="form-control" name="name">
+
+                        @error('name')
+                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" >
+                        <input type="email" class="form-control" name="email">
+                        @error('email')
+                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Phone</label>
-                        <input type="number" class="form-control" name="phone" >
+                        <input type="number" class="form-control" name="phone">
+                        @error('phone')
+                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Alt Phone</label>
-                        <input type="number" class="form-control" name="alt_phone" >
+                        <input type="number" class="form-control" name="alt_phone">
+                        @error('alt_phone')
+                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Address</label>
-                        <input type="text" class="form-control" name="address" >
+                        <input type="text" class="form-control" name="address">
+                        @error('address')
+                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Date of Birth</label>
-                        <input type="date" class="form-control" name="dob" >
+                        <input type="date" class="form-control" name="dob">
+                        @error('dob')
+                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Image url</label>
-                        <input type="text" class="form-control" name="image" >
+                        <input type="text" class="form-control" name="image">
+                        @error('image')
+                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                 </div>

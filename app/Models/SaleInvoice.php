@@ -13,6 +13,10 @@ class SaleInvoice extends Model
     public function Customer(){
         return $this->belongsTo(Customer::class);
     }
+
+    public function user(){
+        return $this->belongsTo(User::class,'create_by','id');
+    }
     public function sales_product(){
         return $this->hasMany(SaleInvoiceProduct::class,'sale_invoice_id','id');
     }

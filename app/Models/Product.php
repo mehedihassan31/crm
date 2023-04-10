@@ -21,4 +21,8 @@ class Product extends Model
         'add_info',
         'user_id'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
 }

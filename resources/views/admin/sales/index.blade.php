@@ -35,8 +35,10 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
+                            <th>Invoice No</th>
                             <th>Totall Price</th>
                             <th>Payment Date</th>
+                            <th>Created By</th>
                             <th>Action</th>
 
                         </tr>
@@ -82,12 +84,20 @@
                                 name: 'name'
                             },
                             {
+                                data: 'invoice_no',
+                                name: 'invoice_no'
+                            },
+                            {
                                 data: 'totall_price',
                                 name: 'totall_price'
                             },
                             {
                                 data: 'payment_date',
                                 name: 'payment_date'
+                            },
+                            {
+                                data: 'create_by',
+                                name: 'create_by'
                             },
 
                             {

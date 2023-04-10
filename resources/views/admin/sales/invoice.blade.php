@@ -71,10 +71,10 @@
                                 <div class="col-6">
                                     <p class="h3">Zaitunsoft</p>
                                     <address>
-                                        Street Address<br>
-                                        State, City<br>
-                                        Region, Postal Code<br>
-                                        ctr@example.com
+                                        Birganj sorkari<br>
+                                        college rd<br>
+                                        birganj,dinajpur<br>
+                                        rabby.zaitunsoft@gmail.com
                                     </address>
                                 </div>
                                 <div class="col-6 text-end">
@@ -96,8 +96,8 @@
                                         <th class="text-center" style="width: 1%"></th>
                                         <th>Product</th>
                                         <th class="text-center" style="width: 1%">Qnt</th>
-                                        <th class="text-end" style="width: 1%">Unit</th>
-                                        <th class="text-end" style="width: 1%">Amount</th>
+                                        <th class="text-end" style="width: 1%">Unit Price</th>
+                                        <th class="text-end" style="width: 1%">Total Amount</th>
                                     </tr>
                                 </thead>
                                 {{-- <tr>
@@ -113,15 +113,14 @@
                                     <td class="text-end">$1.800,00</td>
                                 </tr> --}}
                                 @php
-                                    $i=0;
+                                    $i=1;
                                 @endphp
 
                                 @foreach ($saleInvoice->sales_product as $product)
                                     <tr>
                                         <td class="text-center">{{$i++}}</td>
+                                        <td>{{$product->product->name}}</td>
                                         <td class="text-end">1</td>
-                                        <td></td>
-
                                         <td class="text-end">{{$product->unit_price}}</td>
                                         <td class="text-end">{{$product->unit_price}}</td>
                                     </tr>
@@ -133,12 +132,12 @@
                                 </tr>
                                 <tr>
                                     <td colspan="4" class="strong text-end">Vat Rate</td>
-                                    <td class="text-end">{{$saleInvoice->totall_price}}</td>
+                                    <td class="text-end">{{$saleInvoice->vat ?? '0'}}</td>
                                 </tr>
 
                                 <tr>
                                     <td colspan="4" class="font-weight-bold text-uppercase text-end">Total Due</td>
-                                    <td class="font-weight-bold text-end">{{$saleInvoice->due_amount}}</td>
+                                    <td class="font-weight-bold text-end">{{$saleInvoice->due_amount ?? '0'}}</td>
                                 </tr>
                                 <tr>
 

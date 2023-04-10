@@ -16,8 +16,9 @@ class AdminSeeder extends Seeder
     {
 
         $adminsInfo = [
-        ['name' => 'mehedi hassan','email' =>'admin@admin.com','email_verified_at' => now(),'password' => Hash::make('12345678')],
-        // ['name' => 'Super Admin','email'=>'mehedihassan3112@gmail.com','email_verified_at' => now(),'password' => Hash::make('12345678')],
+        ['name' => 'mehedi hassan','email' =>'admin@admin.com','email_verified_at' => now(),'password' => Hash::make('123#mehedi@hassan')],
+        ['name' => 'Super Admin','email'=>'rabby.zaitunsoft@gmail.com','email_verified_at' => now(),'password' => Hash::make('@rabby#1234')],
+        ['name' => 'user','email'=>'amiamitbolchi01@gmail.com','email_verified_at' => now(),'password' => Hash::make('12#amit12')],
 
         ];
 

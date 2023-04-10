@@ -35,9 +35,14 @@ class ProductController extends Controller
     public function data(Request $request)
     {
 
-        $query = Product::orderBY('id', 'DESC')->select();
+        $query = Product::with('user')->orderBY('id', 'DESC')->select();
         return $this->dataTable->eloquent($query)
             ->escapeColumns([])
+            ->addColumn('create_by', function (Product $item) {
+                return $item?->user?->name;
+
+            })
+            ->rawColumns(['create_by'])
 
             ->editColumn('status', function ($item) {
                 $html = "";
@@ -94,8 +99,6 @@ class ProductController extends Controller
             $product->fill($request->except(['_token']));
             $product->user_id=Auth::user()->id;
             $product->save();
-
-
             return redirect()->route('products.index')->with('message', 'Successfully Created');
 
         } catch (\Throwable $th) {

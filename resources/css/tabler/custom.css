@@ -230,43 +230,6 @@ p {
 }
 
 
-/* .myPostWizard .col001 {
-    display: inline-block;
-    margin: 4px 2px 4px 18px;
-}
-
-.myPostWizard .col022 {
-    display: inline-block;
-}
-.myPostWizard input[type=checkbox] {
-    display: none;
-}
-
-input[type=radio], input[type=checkbox] {
-    box-sizing: border-box;
-    padding: 0;
-}
-.custom-control-input {
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-}
-.exclude-country {
-    border-radius: 20px;
-}
-
-.myPostWizard .exclude-country-label {
-    display: inline-block;
-    background-color: #eaeaea !important;
-    border-radius: 3px;
-    border: 1px solid #eaeaea;
-    padding: 1px 5px 1px 5px;
-    outline: none;
-    font-size: 14px;
-}
-.bg-gray {
-    background-color: #8898aa!important;
-} */
 
 
   .checkbox-color input[type="checkbox"] {

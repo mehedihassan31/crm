@@ -8,8 +8,11 @@ import '../../node_modules/@tabler/core/dist/libs/jsvectormap/dist/maps/world.js
 import '../../node_modules/@tabler/core/dist/libs/jsvectormap/dist/maps/world-merc.js';
 import '../../node_modules/@tabler/core/dist/libs/plyr/dist/plyr.min.js';
 import '../../node_modules/@tabler/core/dist/libs/litepicker/dist/litepicker.js';
-import '../../node_modules/@tabler/core/dist/libs/tom-select/dist/js/tom-select.complete.min.js';
+
 import '../../node_modules/@tabler/core/dist/libs/nouislider/dist/nouislider.min.js';
+// import '../../node_modules/@tabler/core/dist/libs/tom-select/dist/js/tom-select.complete.min.js';
+
+
 
 
 import './custom.js'
@@ -28,6 +31,8 @@ import '../../node_modules/@tabler/core/dist/libs/litepicker/dist/css/litepicker
 import '../../node_modules/@tabler/core/dist/libs/nouislider/dist/nouislider.min.css';
 import '../css/tabler/inter.css';
 import '../css/tabler/custom.css';
+
+
 
 
 import Alpine from 'alpinejs';

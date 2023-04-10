@@ -17,5 +17,9 @@ class Customer extends Model
         'address',
         'image',
         'dob',
+        'create_by',
     ];
+    public function user(){
+        return $this->belongsTo(User::class,'create_by','id');
+    }
 }

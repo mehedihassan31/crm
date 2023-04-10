@@ -2,20 +2,20 @@
 @section('page-content')
     <div class="col-12">
         <div class="card">
-            <form action="{{ route('sales-invoice.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('sales-invoice.update',$saleInvoice->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="card-body">
                     <div class="mb-3">
                         <label class="form-label required">Customer</label>
                         <div class="input-icon mb-3">
-                            <select class="form-select " name="customer_id" required>
+                            <select class="form-select " name="customer_id" >
                                 <option value="">Select a customer</option>
                                 @foreach ($customers as $customer)
-                                    <option value="{{ $customer->id }}">{{ $customer->name }}-{{ $customer->phone }}
+                                    <option value="{{ $customer->id }}"  {{ $saleInvoice->Customer->id == $customer->id ? 'selected':'' }} >{{ $customer->name }}-{{ $customer->phone }}
                                     </option>
                                 @endforeach
                             </select>
-
                         </div>
                     </div>
                     <div class="mb-3">
@@ -25,7 +25,7 @@
                             <select id='tom-select' class='form-select tom-select selectid' name="product_id[]" required
                                 multiple=true>
                                 @foreach ($products as $product)
-                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                    <option value="{{ $product->id }}" {{in_array( $product->id , $saleInvoice->sales_product()?->pluck('product_id')->toArray()) ? 'selected' : ''}}>{{ $product->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -40,7 +40,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Unit Price</label>
-                                <input type="number" id="unit_price" class="form-control" name="unit_price" required>
+                                <input type="number" id="unit_price" class="form-control" name="unit_price" value="{{$saleInvoice->unit_price}}" required>
                             </div>
                         </div>
 
@@ -52,12 +52,12 @@
 
                     <div class="mb-3">
                         <label class="form-label required">Total Price </label>
-                        <input type="number" id="total_price" class="form-control" name="total_price" required>
+                        <input type="number" id="total_price" class="form-control" name="total_price" value="{{$saleInvoice->totall_price}}" required>
                     </div>
 
                     <div class="mb-3 col-md-6">
                         <label class="form-label ">Payment Date </label>
-                        <input type="date" class="form-control" placeholder="Select a date" id="datepicker-icon-prepend"
+                        <input type="date" class="form-control" placeholder="Select a date" id="datepicker-icon-prepend" value="{{\Illuminate\Support\Carbon::parse($saleInvoice->payment_date)->format("Y-m-d")}}"
                             name="payment_date">
                     </div>
 
@@ -77,7 +77,7 @@
                             <path d="M12 5l0 14" />
                             <path d="M5 12l14 0" />
                         </svg>
-                        Create
+                        Update
                     </button>
                 </div>
 

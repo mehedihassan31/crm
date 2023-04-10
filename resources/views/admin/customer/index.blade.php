@@ -40,6 +40,7 @@
                             <th>Phone</th>
                             <th>Alt Phone</th>
                             <th>Address</th>
+                            <th>Created By</th>
                             <th>Action</th>
 
                         </tr>
@@ -101,6 +102,10 @@
                             {
                                 data: 'address',
                                 name: 'address'
+                            },
+                            {
+                                data: 'create_by',
+                                name: 'create_by'
                             },
 
                             {
