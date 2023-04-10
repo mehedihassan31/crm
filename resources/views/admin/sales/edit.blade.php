@@ -52,7 +52,7 @@
 
                     <div class="mb-3">
                         <label class="form-label required">Total Price </label>
-                        <input type="number" id="total_price" class="form-control" name="total_price" value="{{$saleInvoice->totall_price}}" required>
+                        <input type="number" id="total_price" class="form-control" name="total_price" value="{{$saleInvoice->total_price}}" required>
                     </div>
 
                     <div class="mb-3 col-md-6">

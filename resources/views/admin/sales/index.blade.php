@@ -88,8 +88,8 @@
                                 name: 'invoice_no'
                             },
                             {
-                                data: 'totall_price',
-                                name: 'totall_price'
+                                data: 'total_price',
+                                name: 'total_price'
                             },
                             {
                                 data: 'payment_date',

@@ -44,7 +44,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Image url</label>
                                 <div class="input-group input-group-flat">
-                                    <input type="text" name="f_image_link" class="form-control ps-0"
+                                    <input type="url" name="f_image_link" class="form-control ps-0"
                                         autocomplete="off">
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Second Image url</label>
                                 <div class="input-group input-group-flat">
-                                    <input type="text" name="s_image_link" class="form-control ps-0"
+                                    <input type="url" name="s_image_link" class="form-control ps-0"
                                         autocomplete="off">
                                 </div>
                             </div>

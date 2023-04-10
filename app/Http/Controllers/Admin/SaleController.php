@@ -100,7 +100,7 @@ class SaleController extends Controller
             $saleInvoice->customer_id = $request->customer_id;
             $saleInvoice->invoice_no = Str::random(8);
             $saleInvoice->unit_price = $request->unit_price;
-            $saleInvoice->totall_price = $request->total_price;
+            $saleInvoice->total_price = $request->total_price;
             $saleInvoice->payment_date = $request->payment_date;
             $saleInvoice->create_by = Auth::user()->id;
             $saleInvoice->save();
@@ -165,7 +165,7 @@ class SaleController extends Controller
             $saleInvoice = SaleInvoice::find($id);
             $saleInvoice->customer_id = $request->customer_id;
             $saleInvoice->unit_price = $request->unit_price;
-            $saleInvoice->totall_price = $request->total_price;
+            $saleInvoice->total_price = $request->total_price;
             $saleInvoice->payment_date = $request->payment_date;
             $saleInvoice->update();
 

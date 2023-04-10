@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\SaleController;
 use App\Http\Controllers\Admin\ProductController;
@@ -17,12 +18,22 @@ use App\Http\Controllers\Admin\CustomerController;
 |
 */
 
+
+Route::get('migrate', function () {
+    Artisan::call('migrate');
+    dd("migrate");
+});
+
+Route::get('clear_cache', function () {
+    Artisan::call('db:seed');
+    dd("seed");
+});
 Route::get('/', function () {
     return  redirect('login');
 });
 
 
-Route::get('sales/email', [SaleController::class,'email']);
+Route::get('sales/email', [SaleController::class,'sendEmail']);
 
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/dashboard', function () {

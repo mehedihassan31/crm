@@ -99,8 +99,8 @@ class ProductController extends Controller
             $product->fill($request->except(['_token']));
             $product->user_id=Auth::user()->id;
             $product->save();
+            toast('Successfully Created!','success');
             return redirect()->route('products.index')->with('message', 'Successfully Created');
-
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -150,8 +150,8 @@ class ProductController extends Controller
             $product->user_id=Auth::user()->id;
             $product->save();
 
-
-            return redirect()->route('products.index')->with('message', 'Successfully Created');
+            toast('Successfully Updated!','success');
+            return redirect()->route('products.index')->with('message', 'Successfully Updated');
 
         } catch (\Throwable $th) {
             throw $th;

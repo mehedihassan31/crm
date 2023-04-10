@@ -128,7 +128,7 @@
 
                                 <tr>
                                     <td colspan="4" class="strong text-end">Subtotal</td>
-                                    <td class="text-end">{{$saleInvoice->totall_price}}</td>
+                                    <td class="text-end">{{$saleInvoice->total_price}}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="4" class="strong text-end">Vat Rate</td>
@@ -142,7 +142,7 @@
                                 <tr>
 
                                     <td colspan="4" class="font-weight-bold text-uppercase text-end">Total Paid</td>
-                                    <td class="font-weight-bold text-end">{{$saleInvoice->totall_price}}</td>
+                                    <td class="font-weight-bold text-end">{{$saleInvoice->total_price}}</td>
 
                                 </tr>
 

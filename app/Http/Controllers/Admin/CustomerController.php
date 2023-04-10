@@ -76,6 +76,7 @@ class CustomerController extends Controller
             $customer->fill($request->except(['_token']));
             $customer->create_by = Auth::user()->id;
             $customer->save();
+            toast('Successfully Created!','success');
 
             return redirect()->route('customers.index')->with('message', 'Successfully Created');
 
@@ -125,8 +126,8 @@ class CustomerController extends Controller
             $customer=Customer::find($id);
             $customer->fill($request->except(['_token']));
             $customer->save();
-
-            return redirect()->route('customers.index')->with('message', 'Successfully Created');
+            toast('Successfully Updated!','success');
+            return redirect()->route('customers.index')->with('message', 'Successfully Updated');
 
         } catch (\Throwable $th) {
             throw $th;
@@ -141,12 +142,5 @@ class CustomerController extends Controller
         //
     }
 
-    public function updateStatus($id, Request $request)
-    {
-        $customer = CustomersCheck::findOrFail($id);
-        $customer->is_active = $request->input('is_active');
-        $customer->save();
 
-        return response()->json(['message' => 'Status updated !']);
-    }
 }

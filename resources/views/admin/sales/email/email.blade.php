@@ -22,17 +22,16 @@
                                 <tr>
                                     <th class="text-center" style="width: 1%">#</th>
                                     <th>Email</th>
-                                    <th class="text-center" >Payoneer pass	</th>
-                                    <th class="text-center" >Email pass</th>
+                                    <th class="text-center" >Payoneer Password	</th>
+                                    <th class="text-center" >Email Password</th>
                                     <th class="text-center" >Recovery Email</th>
+                                    <th class="text-center">Image Url</th>
                                 </tr>
                             </thead>
 
                             @php
                                 $i=1;
                             @endphp
-
-
 
                             @foreach ($mailData  as $product)
                                 <tr>
@@ -41,6 +40,7 @@
                                     <td>{{$product->product?->payoneer_password	}}</td>
                                     <td class="text-end">{{$product->product?->email_password}}</td>
                                     <td class="text-end">{{$product->product?->recovery_email}}</td>
+                                    <td class="text-end"><a href="{{$product?->product?->f_image_link}}">click</a></td>
                                 </tr>
                             @endforeach
 
